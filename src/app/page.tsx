@@ -1,9 +1,12 @@
 "use client"
-import GroupAvatar from "@/components/group-avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import GroupAvatar from "@/components/group-avatar";
+import OverviewTable from "@/components/overview/overview-table";
+import SummaryCard from "@/components/summary-card";
+import { formatCurrency } from "@/lib/utils";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -49,7 +52,20 @@ export default function Home() {
               <TabsTrigger value={TabState.TRANSACTIONS}>Transactions</TabsTrigger>
             </TabsList>
 
-            <TabsContent value={TabState.OVERVIEW}>OVERVIEW</TabsContent>
+            <TabsContent value={TabState.OVERVIEW}>
+              <div>
+                <h3 className="text-lg text-[#1B2528] font-semibold">Summary</h3>
+              </div>
+              <div className="py-4 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
+                <SummaryCard title={"Total Balance"} amount={formatCurrency(12345)} percentage={"+5%"} />
+                <SummaryCard title={"Total Credits"} amount={formatCurrency(7890)} percentage={"+3%"} />
+                <SummaryCard title={"Total Debits"} amount={formatCurrency(4455)} percentage={"-2%"} />
+                <SummaryCard title={"Transactions"} amount={"150"} percentage={"+10%"} />
+              </div>
+              <div className="py-2">
+                <OverviewTable />
+              </div>
+            </TabsContent>
             <TabsContent value={TabState.TRANSACTIONS}>TRANSACTIONS</TabsContent>
           </Tabs>
         </div>
