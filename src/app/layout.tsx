@@ -58,7 +58,7 @@ export default function RootLayout({
                 </div>
               </div>
             </header>
-            <main>
+            <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
               {children}
             </main>
           </SidebarInset>
