@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -12,7 +13,7 @@ export default function Home() {
           <div className="space-y-6">
             <div className="flex items-center gap-2 space-x-4">
               <div className="flex items-center">
-                <h1 className="text-2xl font-semibold md:text-3xl">Wallet Ledger</h1>
+                <h1 className="text-2xl font-semibold md:text-3xl text-[#1B2528]">Wallet Ledger</h1>
                 <IoMdArrowDropdown className="h-6 w-6 text-[1B2528]" />
               </div>
               <Badge variant="secondary" className="gap-1.5 rounded-full bg-[#dde5e7] text-[#1B2528] font-medium">
@@ -48,6 +49,19 @@ export default function Home() {
               <BsThreeDots className="h-4 w-4" />
             </Button>
           </div>
+        </div>
+
+        <div className="py-8">
+          <Tabs defaultValue="overview">
+            <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="transaction">Transactions</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview">hello</TabsContent>
+            <TabsContent value="transaction">hello</TabsContent>
+
+          </Tabs>
         </div>
       </section>
 
