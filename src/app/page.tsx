@@ -1,11 +1,22 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+"use client"
+import GroupAvatar from "@/components/group-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 
+const TabState = {
+  OVERVIEW: "overview",
+  TRANSACTIONS: "transactions"
+} as const
+
+type TabStateT = (typeof TabState)[keyof typeof TabState]
+
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<TabStateT>(TabState.OVERVIEW)
+
   return (
     <>
       <section>
@@ -21,27 +32,7 @@ export default function Home() {
                 Active
               </Badge>
             </div>
-            <div className="mt-2 flex items-center gap-2">
-              <div className="flex -space-x-2">
-                <Avatar className="h-10 w-10 border-2 border-background">
-                  <AvatarImage src="https://github.com/leerob.png" />
-                  <AvatarFallback>A</AvatarFallback>
-                </Avatar>
-                <Avatar className="h-10 w-10 border-2 border-background">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>L</AvatarFallback>
-                </Avatar>
-                <Avatar className="h-10 w-10 border-2 border-background">
-                  <AvatarImage src="https://github.com/evilrabbit.png" />
-                  <AvatarFallback>N</AvatarFallback>
-                </Avatar>
-                <Avatar className="h-10 w-10 border-2 border-background">
-                  <AvatarImage src="https://github.com/sammy-code98.png" />
-                  <AvatarFallback>T</AvatarFallback>
-                </Avatar>
-              </div>
-              <span className="text-sm text-muted-foreground">Ava, Liam, Noah +12 others</span>
-            </div>
+            <GroupAvatar />
           </div>
           <div className="flex items-center space-x-3">
             <Button className="px-6 bg-[#4B8B9F] text-[#020303] font-medium rounded-full hover:bg-[#4B8B9F] cursor-pointer">Share</Button>
@@ -52,20 +43,17 @@ export default function Home() {
         </div>
 
         <div className="py-8">
-          <Tabs defaultValue="overview">
+          <Tabs value={activeTab} onValueChange={(value: unknown) => (setActiveTab(value as TabStateT))}>
             <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="transaction">Transactions</TabsTrigger>
+              <TabsTrigger value={TabState.OVERVIEW}>Overview</TabsTrigger>
+              <TabsTrigger value={TabState.TRANSACTIONS}>Transactions</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="overview">hello</TabsContent>
-            <TabsContent value="transaction">hello</TabsContent>
-
+            <TabsContent value={TabState.OVERVIEW}>OVERVIEW</TabsContent>
+            <TabsContent value={TabState.TRANSACTIONS}>TRANSACTIONS</TabsContent>
           </Tabs>
         </div>
       </section>
-
-
     </>
   );
 }
