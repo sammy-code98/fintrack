@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,9 +9,10 @@ import SummaryCard from "@/components/summary-card";
 import { formatCurrency } from "@/lib/utils";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { transactionSummary } from "@/lib/staticData";
+import { Transaction, transactionSummary } from "@/lib/staticData";
 import { Input } from "@/components/ui/input";
 import Loader from "@/components/loader";
+import NotFound from "@/components/loader/not-found";
 
 const TabState = {
   OVERVIEW: "overview",
@@ -22,9 +23,12 @@ type TabStateT = (typeof TabState)[keyof typeof TabState];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabStateT>(TabState.OVERVIEW);
-  const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState(transactionSummary);
-  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<Transaction[]>(transactionSummary);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const ITEMS_PER_PAGE = 5;
 
   useEffect(() => {
     setLoading(true);
@@ -38,11 +42,22 @@ export default function Home() {
       );
 
       setFilteredData(filtered);
+      setCurrentPage(1);
       setLoading(false);
     }, 300);
 
     return () => clearTimeout(timeout);
   }, [search]);
+
+
+  const paginatedTransactions = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return filteredData.slice(startIndex, endIndex);
+  }, [currentPage, filteredData]);
+
+
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
 
   return (
     <section>
@@ -97,14 +112,38 @@ export default function Home() {
 
             <div className="py-2">
               {loading ? (
-                <div>
-                  <Loader />
-                </div>
+                <Loader />
               ) : filteredData.length === 0 ? (
-                <p className="text-lg text-[#1B2528] text-center font-semibold">No results found.</p>
+                  <NotFound />
               ) : (
-                <OverviewTable allTransactions={filteredData} />
+                    <OverviewTable allTransactions={paginatedTransactions} />
               )}
+            </div>
+
+            <div className="flex justify-end items-center mt-4 space-x-2">
+              <Button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1 text-sm text-[#1B2528] font-medium bg-[#eaeff0] rounded hover:bg-gray-300 disabled:opacity-50"
+              >
+                Prev
+              </Button>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <Button
+                  key={i + 1}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`px-3 py-1 text-sm text-[#1B2528] font-medium rounded ${currentPage === i + 1 ? 'bg-[#4B8B9F] text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+                >
+                  {i + 1}
+                </Button>
+              ))}
+              <Button
+                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1 text-sm text-[#1B2528] font-medium bg-[#eaeff0] rounded hover:bg-gray-300 disabled:opacity-50"
+              >
+                Next
+              </Button>
             </div>
           </TabsContent>
 

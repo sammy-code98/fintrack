@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resilience 17 Venture Studio Frontend Egnineer Test
 
-## Getting Started
 
-First, run the development server:
+This project is built as part of a technical interview test for a Frontend Engineer  position. It demonstrates the use of modern frontend technologies (ReactJs,NextJs,Typescript,Tailwind Css ) to create an interactive, responsive, and scalable web application. The project adheres to best practices in code organization, component-based architecture, and performance optimization.
+
+
+## Features
+- Responsive design for various screen sizes
+- Dashboard UI
+- Metric Card
+- Search funtionality
+- Table for structured data presentation 
+- Pagination for Table data
+
+
+## Technologies Used
+- **React.js/Next.js:** For building the user interface.
+- **TypeScript:** Ensuring type safety and reducing runtime errors.
+- **Tailwind CSS:** Utility-first CSS framework for styling.
+- **ShadcnUi:** Custom component library
+
+
+
+
+## Demo
+[FinTrack Demo](https://samuel-uzor-foodex-task.vercel.app/)
+
+## Run Locally
+
+Clone Project Repo 👍
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/sammy-code98/fintrack.git 
+   ```
+
+Navigate to Project Directory
+```bash
+cd  project-name
 ```
+
+Install dependencies 
+
+```bash
+  npm install
+  ```
+
+  Start the Development Server
+
+  ```bash
+  npm run dev
+  ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Improvements and Next Steps
+- **Add Testing:** Improve coverage for edge cases and asynchronous flows
+-  **Skeleton Loaders** : Improve loading state ui by add more visually appealing loaders
+-  **Sort Table Data by Date** : Add functionality to sort table data by date
+-  **Improved Loading State** : Improve loading state for when actual data is called over a network ie: with axios and tanstack query
+-  **Metrics Calculator** : function to calculate metric with actual data values from server 
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Uzor Samuel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Frontend Engineer
+
+[LinkedIn](https://www.linkedin.com/in/samuel-uzor98/) || [Github](https://github.com/sammy-code98)

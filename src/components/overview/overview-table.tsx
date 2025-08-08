@@ -3,6 +3,7 @@ import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { Badge } from '../ui/badge';
+import { formatCurrency } from '@/lib/utils';
 
 interface OverviewTableI {
   allTransactions: {
@@ -68,7 +69,7 @@ export default function OverviewTable({ allTransactions }: OverviewTableI) {
             <TableRow key={item.id}>
               <TableCell className="font-medium text-[#1B2528]">{item.date}</TableCell>
               <TableCell className='font-medium text-[#1B2528]'>{item.remark}</TableCell>
-              <TableCell className='font-medium text-[#1B2528]'>{item.amount}</TableCell>
+              <TableCell className='font-medium text-[#1B2528]'>{item.type === "Debit" ? "-" : ""}{formatCurrency(item.amount)}</TableCell>
               <TableCell className='font-medium text-[#1B2528]'>{item.currency}</TableCell>
               <TableCell className='font-medium text-[#1B2528]'>
                 <Badge variant="secondary" className="gap-2 rounded-full bg-[#dde5e7] text-[#1B2528] font-semibold">
