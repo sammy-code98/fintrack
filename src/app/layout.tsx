@@ -5,8 +5,8 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { IoSearch } from "react-icons/io5";
 import { CiGrid41 } from "react-icons/ci";
+import SearchInput from "@/components/search-input";
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -28,6 +28,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
@@ -44,9 +45,7 @@ export default function RootLayout({
               />
               <div className="flex-1"></div>
               <div className="flex items-center gap-4">
-                <div>
-                  <IoSearch className="text-2xl text-[#1B2528] cursor-pointer" />
-                </div>
+                <SearchInput />
                 <div>
                   <CiGrid41 className="text-2xl text-[#1B2528] cursor-pointer" />
                 </div>
