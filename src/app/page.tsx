@@ -32,7 +32,7 @@ export default function Home() {
                 <IoMdArrowDropdown className="h-6 w-6 text-[#1B2528]" />
               </div>
               <Badge variant="secondary" className="gap-2 rounded-full bg-[#dde5e7] text-[#1B2528] font-medium">
-                <span className="h-1 w-1 rounded-full bg-[#087A2E] animate-ping"></span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#087A2E] animate-ping"></span>
                 Active
               </Badge>
             </div>
@@ -67,7 +67,11 @@ export default function Home() {
                 <OverviewTable allTransactions={transactionSummary} />
               </div>
             </TabsContent>
-            <TabsContent value={TabState.TRANSACTIONS}>TRANSACTIONS</TabsContent>
+            <TabsContent value={TabState.TRANSACTIONS}>
+              <div className="flex justify-center items-center py-3">
+                <p className="text-base text-[#1B2528]">Transaction data lives here</p>
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
       </section>
