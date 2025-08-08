@@ -23,7 +23,7 @@ This project is built as part of a technical interview test for a Frontend Engin
 
 
 ## Demo
-[FinTrack Demo](https://samuel-uzor-foodex-task.vercel.app/)
+[FinTrack Demo](https://fintrack-samuel-uzor.vercel.app/)
 
 ## Run Locally
 
