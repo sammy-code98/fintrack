@@ -1,14 +1,15 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function Loader() {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="bg-muted/50- bg-red-300 aspect-video rounded-xl" />
-        <div className="bg-muted/50 aspect-video rounded-xl" />
-        <div className="bg-muted/50 aspect-video rounded-xl" />
+    <div className='flex flex-col justify-center items-center space-y-3 py-8'>
+      <div className='animate-ping'>
+        <Image src="/logo.png" alt='logo' width={100} height={100} />
       </div>
-      <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+      <div>
+        <h3 className='text-lg text-[#1B2528] text-center'>Loading...</h3>
+      </div>
     </div>
   )
 }
