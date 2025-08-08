@@ -9,6 +9,7 @@ import SummaryCard from "@/components/summary-card";
 import { formatCurrency } from "@/lib/utils";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { transactionSummary } from "@/lib/staticData";
 
 const TabState = {
   OVERVIEW: "overview",
@@ -28,7 +29,7 @@ export default function Home() {
             <div className="flex items-center gap-2 space-x-4">
               <div className="flex items-center">
                 <h1 className="text-2xl font-semibold md:text-3xl text-[#1B2528]">Wallet Ledger</h1>
-                <IoMdArrowDropdown className="h-6 w-6 text-[1B2528]" />
+                <IoMdArrowDropdown className="h-6 w-6 text-[#1B2528]" />
               </div>
               <Badge variant="secondary" className="gap-2 rounded-full bg-[#dde5e7] text-[#1B2528] font-medium">
                 <span className="h-1 w-1 rounded-full bg-[#087A2E] animate-ping"></span>
@@ -63,7 +64,7 @@ export default function Home() {
                 <SummaryCard title={"Transactions"} amount={"150"} percentage={"+10%"} />
               </div>
               <div className="py-2">
-                <OverviewTable />
+                <OverviewTable allTransactions={transactionSummary} />
               </div>
             </TabsContent>
             <TabsContent value={TabState.TRANSACTIONS}>TRANSACTIONS</TabsContent>
