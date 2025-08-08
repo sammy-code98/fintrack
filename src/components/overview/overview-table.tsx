@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
 import { IoMdArrowDropdown } from 'react-icons/io'
+import { Badge } from '../ui/badge';
 
 interface OverviewTableI {
   allTransactions: {
@@ -12,7 +14,18 @@ interface OverviewTableI {
     type: "Credit" | "Debit";
   }[]
 }
+
+const typeTheme: string | any = {
+  Debit: "bg-[#C6381B]",
+  Credit: "bg-[#087A2E]"
+}
+
 export default function OverviewTable({ allTransactions }: OverviewTableI) {
+
+  const getTypeClass = (status: string | any) => {
+    return typeTheme[status] || ""
+  }
+
   return (
     <>
       <Table>
@@ -53,15 +66,18 @@ export default function OverviewTable({ allTransactions }: OverviewTableI) {
         <TableBody>
           {allTransactions?.map((item) => (
             <TableRow key={item.id}>
-              <TableCell className="font-medium">{item.date}</TableCell>
-              <TableCell>{item.remark}</TableCell>
-              <TableCell>{item.amount}</TableCell>
-              <TableCell className="text-right-">{item.currency}</TableCell>
-              <TableCell className="text-right-">{item.type}</TableCell>
-
+              <TableCell className="font-medium text-[#1B2528]">{item.date}</TableCell>
+              <TableCell className='font-medium text-[#1B2528]'>{item.remark}</TableCell>
+              <TableCell className='font-medium text-[#1B2528]'>{item.amount}</TableCell>
+              <TableCell className='font-medium text-[#1B2528]'>{item.currency}</TableCell>
+              <TableCell className='font-medium text-[#1B2528]'>
+                <Badge variant="secondary" className="gap-2 rounded-full bg-[#dde5e7] text-[#1B2528] font-semibold">
+                  <span className={`${getTypeClass(item.type)} h-2 w-2 rounded-full`}></span>
+                  {item.type}
+                </Badge>
+              </TableCell>
             </TableRow>
           ))}
-
         </TableBody>
       </Table>
     </>
